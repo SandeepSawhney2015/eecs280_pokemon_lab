@@ -47,8 +47,11 @@ const std::string & Trainer::get_name() const {
 //          pokemon in the trainer's active roster. That pokemon is removed
 //          from the roster and returned.
 Pokemon Trainer::choose_pokemon() {
-  assert(!active_roster.empty());
-  return Pokemon(); // TODO: Replace with your implementation
+  //assert(!active_roster.empty());
+  //return Pokemon(); // TODO: Replace with your implementation
+  Pokemon p = this->active_roster[0];
+  this->active_roster.erase(this->active_roster.begin());
+  return p;
 }
 
 // REQUIRES: The trainer's active roster is not empty
@@ -58,8 +61,16 @@ Pokemon Trainer::choose_pokemon() {
 //          pokemon, the first pokemon in the roster is returned. The chosen
 //          pokemon is removed from the roster.
 Pokemon Trainer::choose_pokemon(PokemonType adversary_type) {
-  assert(!active_roster.empty());
-  return Pokemon(); // TODO: Replace with your implementation
+  //assert(!active_roster.empty());
+  //return Pokemon(); // TODO: Replace with your implementation
+  for(int i = 0; i < this->active_roster.size(); i++){
+    if(this->active_roster[i].is_effective_against(adversary_type)){
+      Pokemon p = this->active_roster[i];
+      this->active_roster.erase(this->active_roster.begin() + i);
+      return p;
+    }
+  }
+  return this->active_roster[0];
 }
 
 // EFFECTS: Resets the trainers active roster so that it contains all
