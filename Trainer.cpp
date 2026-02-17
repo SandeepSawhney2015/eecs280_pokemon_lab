@@ -70,7 +70,7 @@ Pokemon Trainer::choose_pokemon(PokemonType adversary_type) {
       return p;
     }
   }
-  return this->active_roster[0];
+  return choose_pokemon();
 }
 
 // EFFECTS: Resets the trainers active roster so that it contains all
